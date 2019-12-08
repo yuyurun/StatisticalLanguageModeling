@@ -63,19 +63,23 @@ def count_bi_word(lines):
             after = freq[freq.index(co)+1]
         else:
             after = co
-        count_bi[int(i)-1] = (after)*count_count[after] / \
-            count_count[co]/len(words)
+        nr_1 = [count_count[i] for i in freq[freq.index(after):]]
+        print('--')
+        print(co)
+        print(nr_1)
+        nr = [count_count[i] for i in freq[freq.index(co):]]
+        print(nr)
+        count_bi[int(i)-1] = (after)*sum(nr_1)/sum(nr)/len(words)
+
+    print(sum(count_bi))
 
     # katz
     uni_word_no_bi = [int(g)
                       for g in get_uni_word(lines) if not str(g) in words]
-    print(len(set(words)))
-    print(len(set(uni_word_no_bi)))
 
     total = sum(count_bi)
 #    zero_c = [1 for i in count_bi if i == 0]
     for w in set(uni_word_no_bi):
-        print(w)
         count_bi[w-1] = (1-total)*uni_word_no_bi.count(w)/len(uni_word_no_bi)
 
     return count_bi
