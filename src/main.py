@@ -9,10 +9,25 @@ SINUM = 24
 
 def load_data():
     with open(INPUT, 'r') as f:
-        lines = f.readlines()
+        lines = f.read()
 
-    return lines
+    return lines.replace('\n',' ').split()
 
+def get_bi_word_(lines):
+    '''
+    全体を1文とする
+    '''
+
+    words = []
+    f = False
+    for word in lines:
+        if f:
+            words.append(word)
+            f = False
+        if int(word) == TENUM:
+            f = True
+
+    return words
 
 def get_bi_word(lines):
 
@@ -41,7 +56,7 @@ def get_uni_word(lines):
 
 
 def count_bi_word(lines):
-    words = get_bi_word(lines)
+    words = get_bi_word_(lines)
     c = collections.Counter(words)
 
     count_count = {}
@@ -72,6 +87,8 @@ def count_bi_word(lines):
         count_bi[int(i)-1] = (after)*sum(nr_1)/sum(nr)/len(words)
 
     print(sum(count_bi))
+
+    print(freq)
 
     # katz
     uni_word_no_bi = [int(g)
