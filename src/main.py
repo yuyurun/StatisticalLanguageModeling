@@ -78,13 +78,12 @@ def count_bi_word(lines):
             after = freq[freq.index(co)+1]
         else:
             after = co
-        nr_1 = [count_count[i] for i in freq[freq.index(after):]]
+
+        nr_1 = [count_count[i] for i in freq if i >= after]
         print('--')
-        print(co)
-        print(nr_1)
-        nr = [count_count[i] for i in freq[freq.index(co):]]
-        print(nr)
+        nr = [count_count[i] for i in freq if i >= co]
         count_bi[int(i)-1] = (after)*sum(nr_1)/sum(nr)/len(words)
+        count_bi[int(i)-1] = (co-0.5)/len(words)
 
     print(sum(count_bi))
 
