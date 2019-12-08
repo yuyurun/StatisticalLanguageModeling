@@ -34,7 +34,7 @@ def get_tr_word_(lines):
 
 def count_tr_word(lines):
     '''
-    Absolute + Kats
+    Absolute + Katsの計算
     '''
 
     tr_words = get_tr_word_(lines)
