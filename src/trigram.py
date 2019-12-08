@@ -77,4 +77,4 @@ if __name__ == '__main__':
     count = count_tr_word(lines)
     with open('../model/trigram.model', 'w') as f:
         for c in count:
-            f.write(str(c)+'\n')
+            f.write('{:.17g}'.format(c) + '\n')

@@ -113,4 +113,4 @@ if __name__ == '__main__':
     count = count_bi_word(lines)
     with open('../model/bigram.model', 'w') as f:
         for c in count:
-            f.write(str(c)+'\n')
+            f.write('{:.17g}'.format(c) + '\n')
