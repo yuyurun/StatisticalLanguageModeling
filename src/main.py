@@ -11,7 +11,8 @@ def load_data():
     with open(INPUT, 'r') as f:
         lines = f.read()
 
-    return lines.replace('\n',' ').split()
+    return lines.replace('\n', ' ').split()
+
 
 def get_bi_word_(lines):
     '''
@@ -28,6 +29,7 @@ def get_bi_word_(lines):
             f = True
 
     return words
+
 
 def get_bi_word(lines):
 
@@ -74,15 +76,20 @@ def count_bi_word(lines):
     # count_bi = [count_count[1]/(SIZE-len(words))/len(words)
     #            for i in range(SIZE)]
     for i, co in c.items():
-        if freq.index(co) != len(freq)-1:
+        # if freq.index(co) != len(freq)-1:
+        if co < 20:
             after = freq[freq.index(co)+1]
         else:
             after = co
 
         nr_1 = [count_count[i] for i in freq if i >= after]
-        print('--')
+        #print('--')
         nr = [count_count[i] for i in freq if i >= co]
-        count_bi[int(i)-1] = (after)*sum(nr_1)/sum(nr)/len(words)
+        if co < 20:
+            count_bi[int(i)-1] = (after)*sum(nr_1)/sum(nr)/len(words)
+            count_bi[int(i)-1] = (after)*count_count[after]/count_count[co]/len(words)
+        else:
+            count_bi[int(i)-1] = co/len(words)
         count_bi[int(i)-1] = (co-0.5)/len(words)
 
     print(sum(count_bi))
