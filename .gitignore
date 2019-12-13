@@ -4,3 +4,4 @@ model
 __pycache__/
 src/pp.c
 src/ppp
+.DS_Store
